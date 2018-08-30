@@ -1,0 +1,17 @@
+//package protobuf; //定义了包名
+//option java_package = "com.sq.protobufdemo";
+option java_outer_classname = "ListingAndGeneralNesting";
+//一个message可以看做是一个JavaBean，这样理解的话，如果message中还有message就类似于Java中的内部类了;
+//下面同时模拟属性是自定义类和集合的情况，一个人一套试卷，同时试卷有题目的集合属性
+message Person {
+
+    required NestingObject object = 4;
+    required string name = 5;
+    optional int32 clazz = 6;
+
+}
+message NestingObject {
+    optional string title = 1;
+    required int32 grade = 2;
+    repeated string subject = 3;
+}

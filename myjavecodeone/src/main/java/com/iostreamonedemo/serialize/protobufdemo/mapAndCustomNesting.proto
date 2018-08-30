@@ -1,0 +1,19 @@
+//package protobuf; //定义了包名
+//option java_package = "com.sq.protobufdemo";
+syntax = "proto2";
+option java_outer_classname = "MapAndCustomNesting";
+//一个message可以看做是一个JavaBean，这样理解的话，如果message中还有message就类似于Java中的内部类了;
+//下面模拟map格式和元素是用户自定义类对象的list格式
+message Person {
+    required string name = 1;
+    optional int32 age = 2;
+}
+
+message Lists {
+    repeated Person subject = 3;
+}
+
+//protobufdemo 2.5.0版本不能编译，会报错 Expected "required", "optional", or "repeated".和 Expected field name.
+message Maps {
+    map<string, Person> maps = 4;
+}
