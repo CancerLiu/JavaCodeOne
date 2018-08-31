@@ -86,7 +86,7 @@ public class IOStreamTest {
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         String hasRead = null;
         while ((hasRead = bufferedReader.readLine()) != null) {
-            if (hasRead.equals("exit")) {
+            if ("exit".equals(hasRead)) {
                 System.exit(1);
             }
             System.out.println(hasRead);
@@ -130,23 +130,28 @@ public class IOStreamTest {
     }
 
     /**
-     * 推回输入流
+     * 推回输入流，实现了只打印目标字符串前面内容的功能，此处的目标字符串为first
      */
     private void pushBackStream() throws IOException {
-        //指定推回缓冲区的大小为32字节
-        PushbackReader pushbackReader = new PushbackReader(new FileReader("H:/MyCode/JavaCodeDocument/IOReadDemo.txt"), 32);
+        //指定推回缓冲区的长度为32字节
+        PushbackReader pushbackReader = new PushbackReader(new FileReader("E:/JavaCodeDocument/stream/reader.txt"), 32);
 
         char[] chars = new char[16];
+        //用以保存上次读取的字符串内容
         String lastContent = "";
         int hasRead = 0;
         while ((hasRead = pushbackReader.read(chars)) > 0) {
+            //正常读取，将读取到的字符数组转换为字符串
             String content = new String(chars, 0, hasRead);
+            //用于记录目标字符在推回缓冲区中出现的位置
             int targerIndex = 0;
+            //如果读取到了目标字符，则将内容加入推回缓冲区中
             if ((targerIndex = (lastContent + content).indexOf("first")) > 0) {
                 pushbackReader.unread((lastContent + content).toCharArray());
                 if (targerIndex > 16) {
                     chars = new char[targerIndex];
                 }
+                //读取目标字符之前的内容到chars字符数组中，因为读到了就可以退出程序了
                 pushbackReader.read(chars, 0, targerIndex);
                 System.out.println(new String(chars, 0, targerIndex));
                 System.exit(0);
@@ -154,9 +159,21 @@ public class IOStreamTest {
                 System.out.println(lastContent);
                 lastContent = content;
             }
-
         }
     }
+
+    /**
+     * 标准输入输出流的重定向，此处样例将输出到控制台的标准输出流重定向到相应的文件中
+     */
+    private void printStreamRedirection() throws FileNotFoundException {
+        File file = new File("E:/JavaCodeDocument/stream/redirection.txt");
+        PrintStream printStream = new PrintStream(new FileOutputStream(file));
+        System.setOut(printStream);
+        //之后正常输出打印内容就不会显示在控制台了，而会输出到重定向的相应文件中
+        System.out.println("来自答应的内容，应该会输出到相应的文件");
+        printStream.close();
+    }
+
 
     public static void main(String[] args) throws IOException {
         IOStreamTest ioStreamTest = new IOStreamTest();
@@ -165,8 +182,9 @@ public class IOStreamTest {
 //        ioStreamTest.writeChar();
 //        ioStreamTest.convertStream();
 //        ioStreamTest.pushBackStream();
-//        ioStreamTest.bufferWriter();
+//         ioStreamTest.bufferWriter();
 //        ioStreamTest.inputStreamMy();
-        ioStreamTest.bufferReader();
+//        ioStreamTest.bufferReader();
+        ioStreamTest.printStreamRedirection();
     }
 }

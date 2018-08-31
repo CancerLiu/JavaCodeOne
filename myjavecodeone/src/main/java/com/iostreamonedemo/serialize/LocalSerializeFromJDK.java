@@ -5,10 +5,10 @@ import com.iostreamonedemo.objectresource.User;
 
 import java.io.*;
 
-public class SerializeTest {
+public class LocalSerializeFromJDK {
 
     private void objectOutput() throws IOException, ClassNotFoundException {
-        FileOutputStream fileOutputStream = new FileOutputStream(new File("H:\\MyData\\IOObjectDemo.txt"));
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("E:/JavaCodeDocument/stream/objectStream.txt"));
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         User user1 = new User().setName("liuchao").setHeight(178);
         user1.setAgeStu(28);
@@ -19,7 +19,7 @@ public class SerializeTest {
     }
 
     private void objectInput() throws IOException, ClassNotFoundException {
-        FileInputStream fileInputStream = new FileInputStream(new File("H:\\MyData\\IOObjectDemo.txt"));
+        FileInputStream fileInputStream = new FileInputStream(new File("E:/JavaCodeDocument/stream/objectStream.txt"));
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         User user1 = (User) objectInputStream.readObject();
         User user2 = (User) objectInputStream.readObject();
@@ -29,9 +29,8 @@ public class SerializeTest {
     }
 
 
-
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        SerializeTest serializeTest = new SerializeTest();
+        LocalSerializeFromJDK serializeTest = new LocalSerializeFromJDK();
 //        serializeTest.objectOutput();
         serializeTest.objectInput();
     }
