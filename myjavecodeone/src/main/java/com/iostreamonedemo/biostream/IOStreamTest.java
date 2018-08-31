@@ -1,6 +1,7 @@
 package com.iostreamonedemo.biostream;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class IOStreamTest {
 
@@ -10,13 +11,30 @@ public class IOStreamTest {
      * @throws IOException
      */
     private void readChar() throws IOException {
-        File file = new File("H:\\MyData\\IOReadDemo.txt");
+        File file = new File("H:/MyCode/JavaCodeDocument/IOReadDemo.txt");
         FileReader reader = new FileReader(file);
         char[] chars = new char[32];
         int hasRead = 0;
         while ((hasRead = reader.read(chars)) > 0) {
             System.out.println(new String(chars, 0, hasRead));
         }
+        reader.close();
+    }
+
+    /**
+     * 字节流输入
+     *
+     * @throws IOException
+     */
+    private void inputStreamMy() throws IOException {
+        File file = new File("H:/MyCode/JavaCodeDocument/IOInputAndWriterDemo.txt");
+        FileInputStream inputStream = new FileInputStream(file);
+        byte[] bytes = new byte[64];
+        int len = 0;
+        while ((len = inputStream.read(bytes)) > 0) {
+            System.out.println(new String(bytes, 0, len, "UTF-8"));
+        }
+        inputStream.close();
     }
 
     /**
@@ -25,8 +43,8 @@ public class IOStreamTest {
      * @throws IOException
      */
     private void copyMy() throws IOException {
-        File inFile = new File("H:\\MyData\\IOReadDemo.txt");
-        File outFile = new File("H:\\MyData\\IOWriteDemo.txt");
+        File inFile = new File("H:/MyCode/JavaCodeDocument/IOReadDemo.txt");
+        File outFile = new File("H:/MyCode/JavaCodeDocument/IOWriteDemo.txt");
 
         FileInputStream fileInputStream = new FileInputStream(inFile);
         FileOutputStream fileOutputStream = new FileOutputStream(outFile);
@@ -38,7 +56,11 @@ public class IOStreamTest {
         while ((hasRead = fileInputStream.read(bytes)) > 0) {
             fileOutputStream.write(bytes, 0, hasRead);
         }
+
+        fileInputStream.close();
+        fileOutputStream.close();
     }
+
 
     /**
      * 输出字符流，生成文件
@@ -46,7 +68,7 @@ public class IOStreamTest {
      * @throws IOException
      */
     private void writeChar() throws IOException {
-        File file = new File("H:\\MyData\\IOWriterDemo.txt");
+        File file = new File("H:/MyCode/JavaCodeDocument/IOWriterDemo.txt");
         FileWriter fileWriter = new FileWriter(file);
 
         fileWriter.write("锦瑟无端五十年");
@@ -72,11 +94,47 @@ public class IOStreamTest {
     }
 
     /**
+     * 缓冲流输出
+     */
+    private void bufferWriter() throws IOException {
+        FileWriter fileWriter = new FileWriter(new File("H:/MyCode/JavaCodeDocument/IOInputAndWriterDemo.txt"));
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        Scanner scan = new Scanner(System.in);
+        while (scan.hasNext()) {
+            String writerString = scan.next();
+            if ("exit".equals(writerString)) {
+                bufferedWriter.close();
+                System.exit(1);
+            }
+            bufferedWriter.write(writerString);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        }
+        bufferedWriter.close();
+    }
+
+    /**
+     * 缓冲流输入
+     *
+     * @throws IOException
+     */
+    private void bufferReader() throws IOException {
+        FileReader fileReader = new FileReader(new File("H:/MyCode/JavaCodeDocument/IOInputAndWriterDemo.txt"));
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        char[] chars = new char[32];
+        int len = 0;
+        while ((len = bufferedReader.read(chars)) > 0) {
+            System.out.println(new String(chars, 0, len));
+        }
+        bufferedReader.close();
+    }
+
+    /**
      * 推回输入流
      */
     private void pushBackStream() throws IOException {
         //指定推回缓冲区的大小为32字节
-        PushbackReader pushbackReader = new PushbackReader(new FileReader("H:\\MyData\\IOReadDemo.txt"), 32);
+        PushbackReader pushbackReader = new PushbackReader(new FileReader("H:/MyCode/JavaCodeDocument/IOReadDemo.txt"), 32);
 
         char[] chars = new char[16];
         String lastContent = "";
@@ -106,6 +164,9 @@ public class IOStreamTest {
 //        ioStreamTest.copyMy();
 //        ioStreamTest.writeChar();
 //        ioStreamTest.convertStream();
-        ioStreamTest.pushBackStream();
+//        ioStreamTest.pushBackStream();
+//        ioStreamTest.bufferWriter();
+//        ioStreamTest.inputStreamMy();
+        ioStreamTest.bufferReader();
     }
 }
