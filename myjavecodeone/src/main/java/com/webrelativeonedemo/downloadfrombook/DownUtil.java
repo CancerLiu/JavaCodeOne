@@ -75,6 +75,7 @@ public class DownUtil {
             sumSize += threads[i].length;
         }
         return (sumSize * 1.0 / fileSize);
+
     }
 
     public static void main(String[] args) throws IOException {
