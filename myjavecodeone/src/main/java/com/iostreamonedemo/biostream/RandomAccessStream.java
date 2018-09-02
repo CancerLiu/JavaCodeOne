@@ -1,7 +1,10 @@
 package com.iostreamonedemo.biostream;
 
 
+
+
 import java.io.*;
+
 
 public class RandomAccessStream {
 
@@ -54,7 +57,6 @@ public class RandomAccessStream {
         while ((wttmp = raf.read(bytesRead)) > 0) {
             tmpOut.write(bytesRead, 0, wttmp);
         }
-
         //加入新内容
         raf.seek(pos);
         raf.write(insertContent.getBytes());
@@ -64,7 +66,7 @@ public class RandomAccessStream {
         while ((rdtmp = tmpIn.read(bytesWrite)) > 0) {
             raf.write(bytesWrite, 0, rdtmp);
         }
-
+      
     }
 
 
