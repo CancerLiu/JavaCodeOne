@@ -33,6 +33,7 @@ public class DownUtil {
         //HttpURLConnection是URLConnection的子类，其中有一些Http相关的属性
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
+        //设置Http的请求头相关属性
         conn.setConnectTimeout(5 * 1000);
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "image/gif,image/jpeg,image/pjpeg," +
@@ -44,8 +45,7 @@ public class DownUtil {
 
         //得到文件大小
         fileSize = conn.getContentLength();
-        //得到总文件大小之后就立马关闭连接，因为是分线程下载，所以此处的链接的作用
-        //仅仅用于得到文件大小，用于创建下载临时文件使用；
+        //得到总文件大小之后就立马关闭连接，因为是分线程下载，所以此处的链接的作用仅仅用于得到文件大小，用于创建下载临时文件使用；
         conn.disconnect();
         int currentPartSize = fileSize / threadNum + 1;
 
