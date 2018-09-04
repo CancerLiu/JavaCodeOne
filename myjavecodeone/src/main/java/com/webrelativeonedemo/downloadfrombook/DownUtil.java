@@ -49,13 +49,14 @@ public class DownUtil {
         conn.disconnect();
         int currentPartSize = fileSize / threadNum + 1;
 
-        //设置临时文件
+        //设置临时文件(使用随机读取类)
         RandomAccessFile file = new RandomAccessFile(targetFile, "rw");
         file.setLength(fileSize);
         //设置临时文件大小之后，关闭流
         file.close();
 
         for (int i = 0; i < threadNum; i++) {
+            //每个线程的开始下载位置。
             int startPos = i * currentPartSize;
             //每个线程使用自己的RandomAccessFile进行下载
             RandomAccessFile randomAccessFile = new RandomAccessFile(targetFile, "rw");
@@ -81,7 +82,7 @@ public class DownUtil {
     public static void main(String[] args) throws IOException {
         //初始化DownUtil对象
         final DownUtil downUtil = new DownUtil("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528954143389&di=4997575a0cd54314d4eb4479b2a0793e&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F96dda144ad345982b391b10900f431adcbef8415.jpg",
-                "E:\\My\\download\\secondPicture_from_thread.jpg", 4);
+                "E:/JavaDocument/picture/first_picture_for_thread.jpg", 4);
 
         downUtil.download();
         //然后专门开一个线程用来查看当前的下载进度
@@ -142,7 +143,7 @@ public class DownUtil {
 }
 
 class DownThread extends Thread {
-
+    //资源路径
     private String path;
     //当前线程下载的位置
     private int startPos;
