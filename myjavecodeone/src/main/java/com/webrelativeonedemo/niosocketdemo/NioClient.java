@@ -29,8 +29,10 @@ public class NioClient {
 
         sc.register(selector, SelectionKey.OP_READ);
 
+        //此处开一个线程，用于打印从服务器端返回的数据
         Executors.newCachedThreadPool().execute(new NioClientThread(selector, charset));
 
+        //主线程用于接收键盘输入的信息
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {

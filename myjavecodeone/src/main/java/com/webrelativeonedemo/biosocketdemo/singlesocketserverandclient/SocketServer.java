@@ -16,7 +16,7 @@ public class SocketServer {
 
     public void socketServerStart(int port) throws IOException {
         ServerSocket serverSocket = new ServerSocket(port);
-
+        //此处服务器端只会收到第一个请求的客户端消息，之后就会自动关闭。
         Socket socket = serverSocket.accept();
 
         //然后向客户端返回信息

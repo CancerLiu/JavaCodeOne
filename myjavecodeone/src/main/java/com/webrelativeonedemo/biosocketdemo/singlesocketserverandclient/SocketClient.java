@@ -57,9 +57,10 @@ public class SocketClient {
         printWriter.close();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         SocketClient socketClient = new SocketClient();
         socketClient.socketClientStartOne(8080);
+        Thread.sleep(10000L);
         socketClient.socketClientStartTwo(8080);
     }
 }
