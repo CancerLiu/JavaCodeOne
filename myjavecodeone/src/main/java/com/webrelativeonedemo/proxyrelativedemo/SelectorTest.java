@@ -11,7 +11,7 @@ public class SelectorTest {
     final String PROXY_ADDR = "139.82.12.188";
     final int PROXY_PORT = 3124;
     //定义需要访问的网站地址
-    String urlStr = "http://baidu.com";
+    String urlStr = "http://www.baidu.com";
 
     public void init() throws IOException {
         //注册默认的代理选择器
@@ -32,7 +32,7 @@ public class SelectorTest {
 
         URL url = new URL(urlStr);
         //没有指定代理服务器，直接打开连接
-        URLConnection conn = url.openConnection();
+        URLConnection conn = url.openConnection();/*此处就不用再具体设置代理服务器了。因为已经通过ProxySelector设置了，这里会默认调用*/
 
     }
 }

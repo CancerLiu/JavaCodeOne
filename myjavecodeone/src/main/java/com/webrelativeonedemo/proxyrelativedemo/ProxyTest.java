@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ProxyTest {
     //下面是代理服务器的地址和端口
     //换成实际有限的代理服务器的地址和端口
-    final String PROXY_ADDR = "129.82.12.188";
+    final String PROXY_ADDR = "192.168.200.200";
     final int PROXY_PORT = 3124;
     //定义需要访问的网站地址
     String urlStr = "http://www.baidu.com";
@@ -23,6 +23,7 @@ public class ProxyTest {
         URLConnection conn = url.openConnection(proxy);
         //设置超时时长
         conn.setConnectTimeout(3000);
+        //此处使用了try-with-resource
         try (//通过代理服务器读取数据的Scanner
              Scanner scan = new Scanner(conn.getInputStream());
              PrintStream ps = new PrintStream("index.htm")) {

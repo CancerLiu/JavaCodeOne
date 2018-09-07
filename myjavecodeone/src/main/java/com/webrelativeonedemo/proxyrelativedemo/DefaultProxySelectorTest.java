@@ -12,6 +12,8 @@ public class DefaultProxySelectorTest {
     public static void main(String[] args) throws URISyntaxException, IOException {
         //获取系统的默认属性
         Properties props = System.getProperties();
+        /*下面依次设置代理服务器的属性*/
+
         //通过系统属性设置HTTP访问所用的代理服务器的主机地址、端口
         props.setProperty("http.proxyHost", "192.168.10.96");
         props.setProperty("http.proxyPort", "8080");
@@ -33,9 +35,9 @@ public class DefaultProxySelectorTest {
         System.out.println("系统默认的代理选择器:" + selector);
         //根据URI动态决定所使用的代理服务器
         System.out.println("系统为ftp://www.crazyit.org选择的代理服务器为:"
-                + ProxySelector.getDefault().select(new URI("ftp://www.crazyit.org")));
+                + selector.select(new URI("ftp://www.crazyit.org")));
         URL url = new URL(urlStr);
-        //直接打开连接，默认的代理选择器会使用http.proxyHost、http.proxyPort系统属性设置的代理服务器
+        //★直接打开连接，默认的代理选择器会使用http.proxyHost、http.proxyPort系统属性设置的代理服务器
         //如果无法连接代理服务器，则默认的代理选择器会尝试直接连接
         URLConnection conn = url.openConnection();
         //设置超时时长

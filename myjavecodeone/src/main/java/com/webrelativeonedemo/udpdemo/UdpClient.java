@@ -26,6 +26,7 @@ public class UdpClient {
 
         while (scan.hasNextLine()) {
             byte[] bytes = scan.nextLine().getBytes();
+            //放入数据，通过setData()方法
             outPacket.setData(bytes);
             socket.send(outPacket);
             socket.receive(inPacket);

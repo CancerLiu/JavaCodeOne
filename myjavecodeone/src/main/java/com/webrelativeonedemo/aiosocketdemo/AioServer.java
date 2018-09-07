@@ -31,7 +31,7 @@ public class AioServer {
         //以指定线程池创建一个AsynchronousServerSocketChannel对象并监听本机PORT端口
         AsynchronousServerSocketChannel serverChannel = AsynchronousServerSocketChannel.open(channelGroup).bind(new InetSocketAddress(PORT));
 
-        //使用CompletionHandler接收来自客户端的连接请求
+        //使用CompletionHandler接收来自客户端的连接请求(此处不加附加参数，所以attachment参数为空)。
         serverChannel.accept(null, new AcceptHandler(serverChannel));
     }
 
@@ -61,6 +61,14 @@ class AcceptHandler implements
         AioServer.channelList.add(sc);
         //准备接收客户端的下一次连接
         serverChannel.accept(null, this);
+        /*之后读取数据————这里是程序的关键，该段程序连续用了两个CompletionHandler类。
+         * 第一个CompletionHandler表示当接收到客户端的信息后，进入其completed()方法中进行处理;
+         * 然后在该completed()方法中从AsynchronousSocketChannel中读取数据的时候，也用了异步回调的方式，即第二个CompletionHandler类。
+         * 当内部将数据从AsynchronousSocketChannel中全部读到ByteBuffer中时，再进一步操作。
+         * 具体说，此处的进一步操作就是开始处理ByteBuffer中的数据，此处是将数据发给所有的客户端！！
+         * 最后是关键的一步，调用read()函数继续等完成后的回调。
+         * */
+
         sc.read(buff, null,
                 new CompletionHandler<Integer, Object>() {
                     @Override

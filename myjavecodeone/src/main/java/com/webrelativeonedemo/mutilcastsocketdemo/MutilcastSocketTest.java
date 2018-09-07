@@ -25,6 +25,7 @@ public class MutilcastSocketTest implements Runnable {
 
     private DatagramPacket outPacket = null;
 
+    //这个方法相当于主线程，用于从键盘得到的数据，并发送出去(发送到共享IP处)。
     public void init() throws IOException {
         try {
             Scanner scan = new Scanner(System.in);
@@ -60,6 +61,7 @@ public class MutilcastSocketTest implements Runnable {
                 System.out.println("聊天信息：" + new String(inBuff, 0, inPacket.getLength()));
             } catch (IOException e) {
                 e.printStackTrace();
+                //如果报错就将该广播类从共享IP处移除。
                 try {
                     if (socket != null) {
                         socket.leaveGroup(broadcastAddress);
