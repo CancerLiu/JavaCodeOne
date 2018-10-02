@@ -23,7 +23,7 @@ public class SimpleAIOClient {
         //从clientChannel中读取数据
         clientChannel.read(buff).get();
         buff.flip();
-        //将buff中的内容转换为字符串
+        //将buff中的内容转换为字符串，相当于从ByteBuffer中读数据
         String content = utf.decode(buff).toString();
         System.out.println("服务器信息:" + content);
     }

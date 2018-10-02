@@ -18,8 +18,6 @@
     <orderEntry type="library" name="Maven: com.googlecode.libphonenumber:libphonenumber:8.8.10" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.libphonenumber:geocoder:2.87" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.libphonenumber:prefixmapper:2.87" level="project" />
-    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.3" level="project" />
-    <orderEntry type="library" name="Maven: com.jcraft:jzlib:1.1.3" level="project" />
     <orderEntry type="module" module-name="base" />
     <orderEntry type="library" name="Maven: com.google.zxing:core:3.3.1" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.jexcelapi:jxl:2.6.12" level="project" />
@@ -80,6 +78,8 @@
     <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:4.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.taobao.diamond:diamond-client:3.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.taobao.diamond:diamond-utils:3.3.2" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: com.jcraft:jzlib:1.1.3" level="project" />
     <orderEntry type="library" name="Maven: commons-httpclient:commons-httpclient:3.1" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
     <orderEntry type="library" name="Maven: com.cpsdb.xmlexcel:xmlexcel:1.0.0-SNAPSHOT" level="project" />
