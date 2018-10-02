@@ -34,3 +34,10 @@
 /myjavecodeone/target/classes/com/webrelativeonedemo/urldemo/*.class
 /myjavecodeone/target/test-classes/com/cpsdb/*.class
 /myjavecodeone/target/test-classes/com/cpsdb/demo/*.class
+/myjavecodeone/target/classes/com/threadonedemo/basethreadmethod/*.class
+/myjavecodeone/target/classes/com/threadonedemo/blockqueuemethod/*.class
+/myjavecodeone/target/classes/com/threadonedemo/communicatethread/*.class
+/myjavecodeone/target/classes/com/threadonedemo/controlandsynchronousthread/*.class
+/myjavecodeone/target/classes/com/threadonedemo/threadgroup/*.class
+/myjavecodeone/target/classes/com/threadonedemo/threadlocaldemo/*.class
+/myjavecodeone/target/classes/com/threadonedemo/threadpooldemo/*.class

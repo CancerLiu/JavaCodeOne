@@ -1,4 +1,4 @@
-package com.threadonedemo;
+package com.threadonedemo.threadlocaldemo;
 
 public class TestThreadLocal {
 
@@ -55,6 +55,7 @@ public class TestThreadLocal {
             System.out.println("线程 " + index + " 的初始value是: " + value.get());
             long random = Math.round((Math.random() * 10));
             for (int j = 0; j < random; j++) {
+                //此处已经改变了value中的值，但是并不影响其他线程的中的value中的值。
                 value.set(value.get() + j);
             }
             System.out.println("线程 " + index + " 的累加value是: " + value.get());
