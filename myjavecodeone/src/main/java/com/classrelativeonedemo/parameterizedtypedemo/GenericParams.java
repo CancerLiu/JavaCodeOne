@@ -9,9 +9,9 @@ public class GenericParams<T> {
     }
 
 
-
     public static void main(String[] args) {
+        //这里泛型方法的类型形参把类泛型类的类型形参覆盖了
         GenericParams<String> gen = new GenericParams<>();
-        gen.getAndPrint(new Integer(1));
+        gen.getAndPrint(1);
     }
 }

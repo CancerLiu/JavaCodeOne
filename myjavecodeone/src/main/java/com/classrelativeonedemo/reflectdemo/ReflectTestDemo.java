@@ -1,6 +1,7 @@
 package com.classrelativeonedemo.reflectdemo;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class ReflectTestDemo {
 
@@ -20,7 +21,15 @@ public class ReflectTestDemo {
         }
     }
 
-    public static void main(String[] args) {
-        ReflectTestDemo.checkDeclareAndNone();
+    public void testOne() throws NoSuchMethodException {
+        Class<Manager> clazz = Manager.class;
+        Method m = clazz.getMethod("setWorkContent", String.class);
+        m.getParameters();
+    }
+
+    public static void main(String[] args) throws NoSuchMethodException {
+//        ReflectTestDemo.checkDeclareAndNone();
+        ReflectTestDemo demo = new ReflectTestDemo();
+        demo.testOne();
     }
 }

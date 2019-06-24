@@ -1,5 +1,11 @@
-package com.cpsdb.mytestcode.parameterizedtype;
+package com.classrelativeonedemo.parameterizedtypedemo;
 
+
+/**
+ * 此处模拟的是带泛型类形参的方法的重写
+ *
+ * @param <T>
+ */
 public class WithGenericFather<T> {
     public void getAndPrint(T value) {
         System.out.println("父类的" + value);

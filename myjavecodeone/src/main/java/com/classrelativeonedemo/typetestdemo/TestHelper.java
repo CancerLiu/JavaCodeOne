@@ -135,8 +135,8 @@ public class TestHelper {
 
     public static void main(String[] args) throws NoSuchFieldException, NoSuchMethodException {
 //        TestHelper.getParameterizedTypeRelationParam("map");
-        TestHelper.getTypeVariableParam("studentUser");
+//        TestHelper.getTypeVariableParam("studentUser");
 //        TestHelper.getArrayTypeParam("pTypeArray");
-//        TestHelper.getWildCardParam();
+        TestHelper.getWildCardParam();
     }
 }

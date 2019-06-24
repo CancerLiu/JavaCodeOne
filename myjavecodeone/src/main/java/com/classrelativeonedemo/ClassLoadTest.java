@@ -10,21 +10,22 @@ public class ClassLoadTest {
     public static void main(String[] args) throws IOException {
 
         ClassLoadTest.getBootstrap();
+        System.out.println();
         ClassLoadTest.getSystemLoad();
     }
 
-    public static void  getBootstrap(){
+    public static void getBootstrap() {
         URL[] urls = sun.misc.Launcher.getBootstrapClassPath().getURLs();
-        for (URL url:urls){
+        for (URL url : urls) {
             System.out.println(url);
         }
     }
 
 
     public static void getSystemLoad() throws IOException {
-      Enumeration<URL> em = ClassLoader.getSystemClassLoader().getResources("");
-      while (em.hasMoreElements()){
-          System.out.println(em.nextElement());
-      }
+        Enumeration<URL> em = ClassLoader.getSystemClassLoader().getResources("");
+        while (em.hasMoreElements()) {
+            System.out.println(em.nextElement());
+        }
     }
 }

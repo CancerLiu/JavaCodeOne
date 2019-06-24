@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ParameterizedType {
 
+    //返回的类型必须和泛型参数中的返回值类型完全一样，所以此处需要用通配符的super来协调
     public static <T> T getSomeThing(List<? super T> dest, List<T> src){
         T last = null;
         for(T ele:src){

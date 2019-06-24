@@ -41,3 +41,5 @@
 /myjavecodeone/target/classes/com/threadonedemo/threadgroup/*.class
 /myjavecodeone/target/classes/com/threadonedemo/threadlocaldemo/*.class
 /myjavecodeone/target/classes/com/threadonedemo/threadpooldemo/*.class
+/myjavecodeone/target/classes/com/javacollectionframeworkdemo/*.class
+/myjavecodeone/target/classes/com/test/*.class
